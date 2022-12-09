@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1> User Management System </h1>
+    <a th:href="@{/logout}" class="btn btn-primary btn-sm-3"> Logout </a>
+    <hr>
+    <h2> Save User</h2>
+    <form action="#" th:action="@{/admin/saveUser}" th:object="${user}" method="POST">
+        <label>
+            <input style="background: antiquewhite" type="text" th:field="*{name}"
+                   placeholder="User Name" class="form-control mb-2 col-xl-12">
+        </label>
+        <br>
+        <label>
+            <input style="background: antiquewhite" type="text" th:field="*{surname}"
+                   placeholder="User Surname" class="form-control mb-2 col-xl-12">
+        </label>
+        <br>
+        <label>
+            <input style="background: antiquewhite" type="number" min="1" step="1" th:field="*{age}"
+                   placeholder="User Age" class="form-control mb-2 col-xl-12">
+        </label>
+        <br>
+        <label>
+            <input style="background: antiquewhite" type="email" th:field="*{email}"
+                   placeholder="User Email" class="form-control mb-2 col-xl-12">
+        </label>
+        <br>
+        <label>
+            <input style="background: antiquewhite" type="password" th:field="*{password}"
+                   placeholder="User Password" class="form-control mb-2 col-xl-12">
+        </label>
+        <br>
+        <label> Roles:
+            <input type="checkbox" name="roles"
+                   th:each="role : ${roles}"
+                   th:text="${role.toString()}"
+                   th:value="${role.id}"
+                   th:field="*{roleSet}"
+            />
+        </label>
+        <br>
+        <button type="submit" class="btn btn-info col-100">Save User</button>
+    </form>
+    <hr>
+    <a th:href="@{/admin/}">Back to User List</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1> User Management System </h1>
+    <a th:href="@{/logout}" class="btn btn-primary btn-sm-3"> Logout </a>
+    <hr>
+    <h2> Update User</h2>
+
+    <form action="#" th:action="@{/admin/saveUser}" th:object="${user}"
+          method="POST">
+        <input type="hidden" th:field="*{id}"/>
+
+        <label>
+            <input style="background: antiquewhite" type="text" th:field="*{name}" class="form-control mb-2 col-xl-12">
+        </label>
+        <br>
+        <label>
+            <input style="background: antiquewhite" type="text" th:field="*{surname}" class="form-control mb-2 col-xl-12">
+        </label>
+        <br>
+        <label>
+            <input style="background: antiquewhite" type="number" th:field="*{age}" class="form-control mb-2 col-xl-12">
+        </label>
+        <br>
+        <label>
+            <input style="background: antiquewhite" type="email" th:field="*{email}" class="form-control mb-2 col-xl-12">
+        </label>
+        <br>
+        <label>
+            <input style="background: antiquewhite" type="password" th:field="*{password}" class="form-control mb-2 col-xl-12">
+        </label>
+        <br>
+        <label> Roles:
+            <input type="checkbox" name="roles"
+                   th:each="role : ${roles}"
+                   th:text="${role.toString()}"
+                   th:value="${role.id}"
+                   th:field="*{roleSet}"
+            />
+        </label>
+        <br>
+        <button type="submit" class="btn btn-info col-2">Update User</button>
+    </form>
+    <hr>
+    <a th:href="@{/admin/}">Back to User List</a>
+</div>
+</body>
+</html>
